@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 //import './Assets/bootstrap.bundle.min.js';
 import './Assets/bootstrap.min.css';
 import './Assets/dashboard.css';
@@ -61,7 +62,7 @@ class Dash extends React.Component
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href='/'>
+                      <a className="nav-link" Link='/'>
                         <span data-feather="users" className="align-text-bottom" />
                         Profile
                       </a>
@@ -125,9 +126,12 @@ class Dash extends React.Component
                     <div>
                       <h3 className="fs-2">Create</h3>
                       <p>Click to Create panels</p>
-                      <a href="Createpanel" className="btn btn-primary">
-                        Create
-                      </a>
+                      {/*<a href="Createpanel" className="btn btn-primary">
+                         Create
+                         </a>*/}
+                      <Link to="/Createpanel" className="btn btn-primary">
+                           Create
+                      </Link>
                     </div>
                   </div>
                   <div className="col d-flex align-items-start">
@@ -137,9 +141,9 @@ class Dash extends React.Component
                     <div>
                       <h3 className="fs-2">Return</h3>
                       <p>Click to get all panels</p>
-                      <a href="Getallpanels" className="btn btn-primary">
+                      <Link to="/Getallpanels" className="btn btn-primary">
                         Return
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="col d-flex align-items-start">
@@ -149,9 +153,9 @@ class Dash extends React.Component
                     <div>
                       <h3 className="fs-2">Update</h3>
                       <p>Click to update panel</p>
-                      <a href="Updatepanel" className="btn btn-primary">
+                      <Link to="/Updatepanel" className="btn btn-primary">
                         Update
-                      </a>
+                      </Link>                      
                     </div>
                   </div>
                 </div>
