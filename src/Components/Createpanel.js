@@ -6,7 +6,7 @@ class Createpanel extends React.Component
     render() 
     {
           return (
-            <div>
+            <div id='r1'>
               <meta charSet="utf-8" />
               <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
               <title />
@@ -14,8 +14,8 @@ class Createpanel extends React.Component
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
               <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
-              <link rel="stylesheet" href="/styles/styles.css" />
-              <link rel="stylesheet" href="create-panel.css" />
+              {/*<link rel="stylesheet" href="/styles/styles.css" />
+              <link rel="stylesheet" href="create-panel.css" />*/}
               <div className="position-fixed top-0 end-0 start-0 bg-img-start bg-image">
               </div>
               <div className="container">

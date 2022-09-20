@@ -12,18 +12,9 @@ import Updateslot from './Components/Updateslot.js';
 import Userlogin from './Components/Userlogin.js';
 import Userregister from './Components/Userregister.js';
 import Dash from './Components/Dash.js'
-//import Dash from './Components/Dash.js'
+import Dash2 from './Components/Dash2.js'
 
 
-//function App() {
- // return (
- //   <div className="App">
-  //    <header className="App-header">
-   //     <Home/>
-   //   </header>
-  //  </div>
- // );
-//}
 
 const App = () => {
   return (
@@ -40,6 +31,7 @@ const App = () => {
         <Route path="/Userregister" element={<Userregister/>} />
         <Route path="/Updateslot" element={<Updateslot/>} />
         <Route path="/Dashboard" element={<Dash/>} />
+        <Route path="/Dashboard2" element={<Dash2/>} />
       </Routes>  
     </Router>
   );
