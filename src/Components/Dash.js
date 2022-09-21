@@ -101,8 +101,8 @@ class Dash extends React.Component
                     </ul>
                   </ul></div>
               </nav>
-              {/* 
-      <div class="b-example-divider"></div> */}
+              
+      {/*<div class="b-example-divider"></div> */}
               <div className="container px-4 py-5" id="hanging-icons" style={{width: '80%', marginLeft: '17%'}}>
                 <h2 className="pb-2 border-bottom">Panel Operations</h2>
                 <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
@@ -113,9 +113,6 @@ class Dash extends React.Component
                     <div>
                       <h3 className="fs-2">Create</h3>
                       <p>Click to Create panels</p>
-                      {/*<a href="Createpanel" className="btn btn-primary">
-                         Create
-                         </a>*/}
                       <Link to="/Createpanel" className="btn btn-primary">
                            Create
                       </Link>
@@ -147,6 +144,7 @@ class Dash extends React.Component
                   </div>
                 </div>
               </div>
+
               <script src="bootstrap.bundle.min.js"></script> 
               <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>             
             </div></div></div>
