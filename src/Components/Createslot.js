@@ -16,7 +16,7 @@ class Createslot extends React.Component
           <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
           <link rel="stylesheet" href="/styles/styles.css" />
           <link rel="stylesheet" href="createslot.css" />
-          <Header/>
+          {/*<Header/>*/}
           <div className="position-fixed top-0 end-0 start-0 bg-img-start bg-image">
           </div>
           <div className="container">
