@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cerebri Sans", sans-serif;
+}
+
+.text-muted {
+    color: #95aac9 !important;
+    text-decoration: none;
+}
+
+.form-group input::-webkit-input-placeholder {
+    color: #95aac9 !important;
+    font-size: .875em;
+}
