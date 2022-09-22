@@ -83,4 +83,4 @@ class Userregister extends React.Component
     }
 }
 
-  export default Userregister;
+export default Userregister;

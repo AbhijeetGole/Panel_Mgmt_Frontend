@@ -54,4 +54,4 @@ class Updatepanel extends React.Component{
       );
     }
   }
-  export default Updatepanel;
+export default Updatepanel;

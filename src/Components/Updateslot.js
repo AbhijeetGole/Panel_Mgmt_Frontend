@@ -88,4 +88,4 @@ class Updateslot extends React.Component{
       );
     }
   }
-  export default Updateslot;
+export default Updateslot;
