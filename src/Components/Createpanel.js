@@ -21,8 +21,7 @@ const Createpanel = ({ token }) => {
           
           console.log("created")
           //navigate("/Home")
-        }
-        ,
+        },
         (error) => {
           console.log(error)
         }

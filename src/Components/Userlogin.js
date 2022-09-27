@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import "./Assets/userlogin.module.css";
 import Authservice from '../services/auth-service.js'
 import Home from './Home';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  // class Userlogin extends React.Component 
  const Userlogin=({setToken})=>
   {
@@ -18,13 +20,14 @@ import Home from './Home';
                   await Authservice.login(username,password).then(
                     (data)=>{
                       console.log(data.token);
+                      toast.success('Wow, Registration Successfull !')
                       // setToken(data.token);
                       if(data.token){
+                        
                         navigate("/Home")
                       }
                       //navigate("/Home")
-                    }
-                  ,
+                    },
                   (error)=>{
                     alert("Wrong Username or Password");
                   }

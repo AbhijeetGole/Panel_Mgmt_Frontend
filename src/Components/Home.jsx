@@ -18,16 +18,19 @@ const Home=()=>
         {/*<div className="container-fluid">
           <div className="row">*/}
             {/*<Sidebar/>
-            <Panelop/>/*}
-            
+            <Panelop/>*/}
+        <div>
+           <h2 style={{'width':'90%','margin-left': '30%'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panel Management Application</h2>
+           
+
+           <img  src="https://www.tayanasolutions.com/wp-content/uploads/2022/05/Cloud-ERP-for-pharma.jpg" alt="Image"style={{'width':'70%','margin-left': '20%'}}></img>
+        </div>   
     
 
 
-            <script src="bootstrap.bundle.min.js"></script> 
-            <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>             
-          {/*</div></div>*/}</div>
+
+        </div>
       );
     
 }
 export default Home;
-        

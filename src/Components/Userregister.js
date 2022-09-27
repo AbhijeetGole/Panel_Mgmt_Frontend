@@ -2,6 +2,9 @@ import React from "react";
 import { useState} from "react";
 import {useNavigate } from 'react-router-dom';
 import Authservice from '../services/auth-service.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Userregister = () => {
     
@@ -23,6 +26,7 @@ export const Userregister = () => {
                       console.log(data.token);
                       // setToken(data.token);
                       if(data.token){
+                        toast.success('Wow, Registration Successfull !')
                         navigate("/Home")
                       }
                       //navigate("/Home")
@@ -36,6 +40,7 @@ export const Userregister = () => {
                 alert("Please Fill All The Fields");
                }
         };
+        
 
         // this.submit = this.submit.bind(this);
         // console.log('submit')
