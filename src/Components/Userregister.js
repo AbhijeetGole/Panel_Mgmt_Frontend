@@ -1,60 +1,62 @@
 import React from "react";
-import { useState} from "react";
-import {useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Authservice from '../services/auth-service.js'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Userregister = () => {
-    
+
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [panelName, setpanelName] = useState("");
+    const [skills, setskills] = useState("");
     // const [home, setHome] = useState('');
     // const [Navigate, setNavigateto] = useState(false);
     const navigate = useNavigate();
-           const submit=async(e)=>{
-               e.preventDefault();
+    const submit = async (e) => {
+        e.preventDefault();
 
-               try{
-                  await Authservice.register(firstname, lastname, username,password, email, phone).then(
-                    (data)=>{
-                      console.log(data.token);
-                      // setToken(data.token);
-                      if(data.token){
-                        toast.success('Wow, Registration Successfull !')
+        try {
+            await Authservice.register(firstname, lastname, username, password, email, phone, panelName, skills).then(
+                (data) => {
+                    console.log(data.token);
+                    // setToken(data.token);
+                    if (data.token) {
+                        alert('Wow, Registration Successfull !')
                         navigate("/Home")
-                      }
-                      //navigate("/Home")
                     }
-                  ,
-                  (error)=>{
+                    //navigate("/Home")
+                }
+                ,
+                (error) => {
                     alert("Please Fill All The Fields");
-                  }
-                  );
-               }catch(err){
-                alert("Please Fill All The Fields");
-               }
-        };
-        
+                }
+            );
+        } catch (err) {
+            alert("Please Fill All The Fields");
+        }
+    };
 
-        // this.submit = this.submit.bind(this);
-        // console.log('submit')
-        // e.preventDefault();
-        // let result = await fetch("http://localhost:8080/user/register",{
-        //     method : 'POST',
-        //     body : JSON.stringify({firstName,lastName,userName,password,email,phone}),
-        //     headers:{
-        //         'Content-Type' : 'application/json'
-        //     }
-        // });
-        // result = await result.json();
 
-        
+    // this.submit = this.submit.bind(this);
+    // console.log('submit')
+    // e.preventDefault();
+    // let result = await fetch("http://localhost:8080/user/register",{
+    //     method : 'POST',
+    //     body : JSON.stringify({firstName,lastName,userName,password,email,phone}),
+    //     headers:{
+    //         'Content-Type' : 'application/json'
+    //     }
+    // });
+    // result = await result.json();
+
+
     // if (navigate) {
 
     // }
@@ -135,6 +137,24 @@ export const Userregister = () => {
                                         <input type="tel" className="form-control" placeholder="Enter your phone no."
                                             value={phone} onChange={(e) => setPhone(e.target.value)}
                                         />
+                                    </div>
+
+                                    <div className="form-group mb-3">
+                                        <label className="form-label"> Panel Name </label>
+                                        <input type="text" className="form-control" placeholder="Enter panel name" value={panelName} onChange={
+                                            (e) => setpanelName(e.target.value)} />
+                                        {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select"/> */}
+                                    </div>
+
+                                    <div className="form-group mb-3">
+                                        <label className="form-label"> Skills </label>
+                                        <input type="text" className="form-control" placeholder="Java, React etc." value={skills} onChange={
+                                            (e) => setskills(e.target.value)} />
+                                    </div>
+
+                                    <div className="form-check form-switch mb-3">
+                                        <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked />
+                                        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Active</label>
                                     </div>
 
                                     <button className="btn btn-lg w-100 btn-primary mb-3" type="submit" onClick={submit}>

@@ -2,13 +2,18 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Assets/createpanel.module.css";
 import Authservice from '../services/auth-service.js'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 //class Createpanel extends React.Component 
 const Createpanel = ({ token }) => {
-
+  const options=['vivek','pawde'];
+  const defaultOption=options[0];
+  console.log(defaultOption);
   const [panelName, setpanelName] = useState("")
   const [skills, setskills] = useState("")
   const [Interviewer, setInterviewer] = useState("")
   const [panelId,setpanelId] = useState("")
+  
   const navigate = useNavigate()
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -53,23 +58,24 @@ const Createpanel = ({ token }) => {
                   <form onSubmit={handleCreate}>
                   <div className="form-group mb-3">
                       <label className="form-label"> Panel Id </label>
-                      <input type="text" className="form-control" placeholder="Enter panel name" value={panelId} onChange={
+                      <input type="text" className="form-control" placeholder="Enter panel id" value={panelId} onChange={
                         (e) => setpanelId(e.target.value)} />
                     </div>
                     <div className="form-group mb-3">
-                      <label className="form-label"> Panel </label>
+                      <label className="form-label"> Panel Name </label>
                       <input type="text" className="form-control" placeholder="Enter panel name" value={panelName} onChange={
                         (e) => setpanelName(e.target.value)} />
-                    </div>
-                    <div className="form-group mb-3">
-                      <label className="form-label"> Skills </label>
-                      <input type="text" className="form-control" placeholder="Java, React etc." value={skills} onChange={
-                        (e) => setskills(e.target.value)} />
+                        {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select"/> */}
                     </div>
                     <div className="form-group mb-3">
                       <label className="form-label"> Interviewer </label>
                       <input type="text" className="form-control" placeholder="Enter interviewer names" value={Interviewer} onChange={
                         (e) => setInterviewer(e.target.value)} />
+                    </div>
+                    <div className="form-group mb-3">
+                      <label className="form-label"> Skills </label>
+                      <input type="text" className="form-control" placeholder="Java, React etc." value={skills} onChange={
+                        (e) => setskills(e.target.value)} />
                     </div>
                     <div className="form-check form-switch mb-3">
                       <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked />
