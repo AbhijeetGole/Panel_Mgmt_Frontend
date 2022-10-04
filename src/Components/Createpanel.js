@@ -80,7 +80,7 @@ const Createpanel = ({ token }) => {
           // navigate("/Panelop")
           console.log("created")
           //navigate("/Home")
-          toast.success('success')
+          //toast.success('success')
         },
         (error) => {
           console.log(error)

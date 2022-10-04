@@ -3,20 +3,24 @@ import{useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Assets/createpanel.module.css";
 import Authservice from '../services/auth-service.js'
+import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //class Updatepanel extends React.Component{
-const Updateslot_2 = ({ token }) => {
- const [slotId, setSlotId] = useState("");
-  const [panelName, setPanelName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [skills, setSkills] = useState("");
-  var [slotused, setUsed] = useState(true);
-  var [active, setActive] = useState(true);
+const Updateslot_2 = () => {
 
-  // const [home, setHome] = useState('');
-  // const [Navigate, setNavigateto] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [slotId, setSlotId] = useState(location.state.id);
+  const [panelName, setPanelName] = useState(location.state.name);
+  const [startDate, setStartDate] = useState(location.state.startdate);
+  const [endDate, setEndDate] = useState(location.state.enddate);
+  const [starttime, setStartTime] = useState(location.state.starttime);
+  const [endtime, setEndTime] = useState(location.state.endtime);
+  const [skills, setSkills] = useState(location.state.skills);
+  var [slotused, setUsed] = useState(location.state.active);
+  var [active, setActive] = useState(location.state.usage);
   
   const handleChange = event => {
     if (event.target.checked) {
@@ -39,11 +43,20 @@ const Updateslot_2 = ({ token }) => {
     e.preventDefault();
     console.log("in submit");
     try {
-      console.log(startTime);
-      await Authservice.updateSlot(slotId, panelName, startDate, endDate, startTime, endTime, skills, slotused, active).then(
+      console.log(startDate, endDate, starttime);
+      await Authservice.updateSlot(slotId, panelName, startDate, endDate, starttime, endtime, skills, slotused, active).then(
         (data) => {
-          alert("Slot created successfully")
-          //navigate("/Home")
+          toast.success('Slot updated successfully', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,})
+            setTimeout(()=>
+            navigate("/Getallslots"),2000);
+
         },
         (error) => {
           alert("Please Fill All The Fields", error);
@@ -72,7 +85,7 @@ const Updateslot_2 = ({ token }) => {
             <div className="col-12 col-md-10 col-xl-5 my-5">
               <div className="card">
                 <div className="card-body">
-                  <h2 className="text-center mb-3">Create a Slot</h2>
+                  <h2 className="text-center mb-3">Update a Slot</h2>
                   <form onSubmit={submit}>
                   
                     <div className="form-group mb-3">
@@ -110,7 +123,7 @@ const Updateslot_2 = ({ token }) => {
                         <div className="form-group mb-3">
                           <label className="form-label"> Start Time </label>
                           <input type="time" className="form-control" placeholder="Enter start time"
-                            value={startTime} onChange={(e) => setStartTime(e.target.value)}
+                            value={starttime} onChange={(e) => setStartTime(e.target.value)}
 
                           />
                         </div>
@@ -119,7 +132,7 @@ const Updateslot_2 = ({ token }) => {
                         <div className="form-group mb-3">
                           <label className="form-label"> End Time </label>
                           <input type="time" className="form-control" placeholder="Enter end time"
-                            value={endTime} onChange={(e) => setEndTime(e.target.value)}
+                            value={endtime} onChange={(e) => setEndTime(e.target.value)}
                           />
                         </div>
                       </div>
@@ -162,6 +175,17 @@ const Updateslot_2 = ({ token }) => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </div>
 
       );

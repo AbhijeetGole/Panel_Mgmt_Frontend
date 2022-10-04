@@ -48,7 +48,7 @@ const Slot=()=>
                     <div>
                       <h3 className="fs-2">Update</h3>
                       <p>Click to update slot</p>
-                      <Link to="/Updateslot" className="btn btn-primary">
+                      <Link to="/Updateslot_2" className="btn btn-primary">
                         Update
                       </Link>                      
                     </div>
