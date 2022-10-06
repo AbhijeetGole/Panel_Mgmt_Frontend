@@ -1,27 +1,27 @@
 import React from 'react';
 import "./Assets/getallpanels.module.css";
-class Getallpanels extends React.Component {
-    render() {
+//class Getallpanels extends React.Component {
+const Getallpanels=()=>  
+  { 
       return (
-        <div>
+        <div >
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <title />
           <meta name="description" content />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
           <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css" integrity="sha384-X8QTME3FCg1DLb58++lPvsjbQoCT9bp3MsUU3grbIny/3ZwUJkRNO8NPW6zqzuW9" crossOrigin="anonymous" />
-          <link rel="stylesheet" href="/styles/styles.css" />
-          <link rel="stylesheet" href="get-all-panels.css" />
-          <div className="position-fixed top-0 end-0 start-0 bg-img-start bg-image" />
+          <link rel="stylesheet" href="getallpanels.module.css"/>
+          <div className="top-0 end-0 start-0 bg-img-start bg-image" />
           <div className="container">
             <div className="row">
-              <div className="min-vh-100 d-flex justify-content-center">
+              <div className="min-vh-100 d-flex justify-content-center" style={{'width':'90%','margin-left': '10%'}}>
                 <div className="col-12 col-md-10 col-xl-10 my-5">
                   <div className="card">
                     <h2 className="text-center mb-3 mt-3">Panels List</h2>
                     <div className="card-header">
+        
                       {/* Search */}
                       <form>
                         <div className="input-group input-group-flush input-group-merge input-group-reverse">
@@ -106,7 +106,7 @@ class Getallpanels extends React.Component {
           </div>
         </div>
       );
-    }
+    
   }
 
   export default Getallpanels;

@@ -1,10 +1,42 @@
-import React from 'react';
+import {React,useState} from 'react';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./Assets/userlogin.module.css";
-
-  class Userlogin extends React.Component 
+import Authservice from '../services/auth-service.js'
+import Home from './Home';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+ // class Userlogin extends React.Component 
+ const Userlogin=({setToken})=>
   {
-      render() 
-      {
+      
+           const [username,setUsername] =useState("")
+           const [password,setPassword] =useState("")
+           const navigate = useNavigate() 
+           const handleLogin=async(e)=>{
+               e.preventDefault();
+               try{
+                  await Authservice.login(username,password).then(
+                    (data)=>{
+                      console.log(data.token);
+                      toast.success('Wow, Registration Successfull !')
+                      // setToken(data.token);
+                      if(data.token){
+                        
+                        navigate("/Home")
+                      }
+                      //navigate("/Home")
+                    },
+                  (error)=>{
+                    alert("Wrong Username or Password");
+                  }
+                  );
+               }catch(err){
+                alert("Wrong Username or Password");
+               }
+           };
+          
             return (
               <div>
                 <meta charSet="utf-8" />
@@ -12,7 +44,6 @@ import "./Assets/userlogin.module.css";
                 <title />
                 <meta name="description" content />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
                 <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="/styles/styles.css" />
                 <link rel="stylesheet" href="./user-login.css" />
@@ -23,18 +54,24 @@ import "./Assets/userlogin.module.css";
                         <div className="col-12 col-md-8 col-xl-4 my-5">
                           <div className="card">
                             <div className="card-body">
+                              
                               <h2 className="text-center mb-3">Sign in</h2>
                               <div className="text-center mb-5">
                                 <small className="text-muted text-center">
                                   Don't have an account yet?
-                                  <a href="sign-up.html" className="text-decoration-none">Sign up</a>.
+                                  <Link to="/Userregister" className="text-decoration-none">
+                                    Sign up
+                                  </Link>
                                 </small>
                               </div>
-                              <form>
+                              <form onSubmit={handleLogin}>
                                 <div className="form-group mb-3">
-                                  <label className="form-label"> User Name </label>
-                                  <input type="text" className="form-control" placeholder="Enter your username" />
+                                  <label className="form-label" > User Name </label>
+                                  <input type="text" className="form-control" placeholder="Enter your username" value={username} onChange={
+                                        (e)=> setUsername(e.target.value)
+                                  }/>
                                 </div>
+                                
                                 <div className="form-group mb-3">
                                   <div className="row">
                                     <div className="col">
@@ -47,7 +84,9 @@ import "./Assets/userlogin.module.css";
                                     </div>
                                   </div>
                                   <div className="input-group input-group-merge">
-                                    <input className="form-control" type="password" placeholder="Enter your password" />
+                                    <input className="form-control" type="password" placeholder="Enter your password" 
+                                    value={password} onChange={
+                                     (e)=> setPassword(e.target.value)}/>
                                   </div>
                                 </div>
                                 <button className="btn btn-lg w-100 btn-primary mb-3">
@@ -62,9 +101,8 @@ import "./Assets/userlogin.module.css";
                   </div>
                 </div></div>
             );
-      }
+      
   }
 
 
-
-  export default Userlogin;
+export default Userlogin;
