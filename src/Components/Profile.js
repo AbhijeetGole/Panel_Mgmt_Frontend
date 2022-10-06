@@ -1,11 +1,69 @@
 
 import "./Assets/profile.css";
-import {MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn}  from 'mdb-react-ui-kit';
-
-import React from 'react';
-
+import { React, useState, useEffect } from "react";
+import Authservice from "../services/auth-service.js";
+const Usr = {urole:"panelis",uname:"Vedant",ufname:"V",ulname:"D",uemail:"abc",uphone:"123",upanelname:"xyz" }
 const Profile=()=>  
-{
+{   
+
+    const [Prof,setProf] = useState([]);
+    {/*useEffect(() => {
+        async function fetchMyAPI() {
+          await Authservice.getUserinfo().then(response => {
+    
+            setoptions([...response]);
+    
+          })
+        }
+        fetchMyAPI()
+        try {
+            Authservice.getSlot().then((slotdata) => {
+              console.log("getallslot auth called");
+              console.log(slotdata);
+              setSlot(slotdata);
+            });
+          } catch (err) {
+            alert("Unable to fetch data", err);
+          }
+      }, [])*/}
+
+
+
+    useEffect(() => 
+    {   
+        try {
+          Authservice.getUserinfo().then((usrdata) => {
+            console.log("getUserinfo auth called");
+            console.log(usrdata);
+            setProf(usrdata);
+            console.log(usrdata);
+          });
+        } catch (err) {
+          alert("Unable to fetch data", err);
+        }
+      }, []);  
+
+    Prof.map((u) => {
+        
+       console.log("userrole is:");
+       console.log(u.userRole);
+
+       return (
+        Usr.urole=u.userRole,
+        Usr.uname=u.username,
+        Usr.ufname=u.firstname,
+        Usr.ulname=u.lastname,
+        Usr.uemail=u.email,
+        Usr.uphone=u.phone,
+        Usr.upanelname=u.panelName);
+
+      });
+      
+
+    
+
+      
+
       return (
         <div>
           <div class="page-content page-container" id="page-content">
@@ -19,8 +77,8 @@ const Profile=()=>
                                                                 <div class="m-b-25">
                                                                     {/*image */}
                                                                 </div>
-                                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Role : Panelist</h6>
-                                                                <h6 class="f-w-600">Vedant D</h6>
+                                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Name : {Usr.uname}</h6>
+                                                                {/*<h6 class="f-w-600">{Usr.urole}</h6>*/}
                                                                 <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                                             </div>
                                                         </div>
@@ -30,22 +88,22 @@ const Profile=()=>
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <p class="m-b-10 f-w-600">Email</p>
-                                                                        <h6 class="text-muted f-w-400">VD@gmail.com</h6>
+                                                                        <h6 class="text-muted f-w-400">{Usr.uemail}</h6>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <p class="m-b-10 f-w-600">Phone</p>
-                                                                        <h6 class="text-muted f-w-400">98979989898</h6>
+                                                                        <h6 class="text-muted f-w-400">{Usr.uphone}</h6>
                                                                     </div>
                                                                 </div>
                                                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Panel Details</h6>
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
-                                                                        <p class="m-b-10 f-w-600">Skills</p>
-                                                                        <h6 class="text-muted f-w-400">Reactjs</h6>
+                                                                        <p class="m-b-10 f-w-600">Role</p>
+                                                                        <h6 class="text-muted f-w-400">{Usr.urole}</h6>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <p class="m-b-10 f-w-600">Panel Name</p>
-                                                                        <h6 class="text-muted f-w-400"> xpanel</h6>
+                                                                        <h6 class="text-muted f-w-400">{Usr.upanelname}</h6>
                                                                     </div>
                                                                 </div>
                                                                 <ul class="social-link list-unstyled m-t-40 m-b-10">
