@@ -98,7 +98,6 @@ const Createpanel = ({ token }) => {
       <title />
       <meta name="description" content />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
       {/*<link rel="stylesheet" href="/styles/styles.css" />
               <link rel="stylesheet" href="create-panel.css" />*/}
       <div className="position-fixed top-0 end-0 start-0 bg-img-start bg-image">

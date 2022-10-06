@@ -98,11 +98,7 @@ const Createslot = () => {
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <title />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link
-        href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans"
-        rel="stylesheet"
-        type="text/css"
-      />
+
       <link rel="stylesheet" href="/styles/styles.css" />
       <link rel="stylesheet" href="createslot.css" />
 

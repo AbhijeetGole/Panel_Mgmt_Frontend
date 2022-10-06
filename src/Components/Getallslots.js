@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import "./Assets/getallslots.module.css";
 import Authservice from "../services/auth-service.js";
 import SlotInfo from "./SlotInfo";
-import "../mystyle.css";
+//import "../mystyle.css";
 import { useNavigate } from "react-router";
 
 //class Getallslots extends React.Component{
@@ -31,11 +31,7 @@ const Getallslots = () => {
       <title />
       <meta name="description" content />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link
-        href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans"
-        rel="stylesheet"
-        type="text/css"
-      />
+
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css"
