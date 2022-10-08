@@ -20,9 +20,8 @@ const Home=()=>
             {/*<Sidebar/>
             <Panelop/>*/}
         <div>
-           <h2 style={{'width':'90%','margin-left': '30%'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panel Management Application</h2>
+           <h2 style={{'width':'90%','margin-left': '30%','marginTop':'2%'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panel Management Application</h2>
            
-
            <img  src="https://www.tayanasolutions.com/wp-content/uploads/2022/05/Cloud-ERP-for-pharma.jpg" alt="Image"style={{'width':'70%','margin-left': '20%'}}></img>
         </div>   
     

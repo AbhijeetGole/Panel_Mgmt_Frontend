@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Assets/createslot.module.css";
+
 //class Sidebar extends React.Component 
 const Sidebar=()=>
 {
-  const paths = window.location.pathname;
+  const tokendata=JSON.parse(localStorage.getItem("user"))
 
-  if(paths=='/Userregister'||paths=='/')
-  {
-      return null; 
+  const isadmin=event=>{
+     if(tokendata.user.userRole=="Panelist"){
+      // event.currentTarget.disabled = true;
+      alert("you are not admin")
+     }
+     
   }
-  else
-  {  
-
       return (
      <div>
               <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -26,16 +27,17 @@ const Sidebar=()=>
                       </Link>
                     </li>
                     <li className="nav-item">
-                      <Link to="/Panelop" className="nav-link">
+                      <Link to="/Getallpanels" className="nav-link" onClick={isadmin}>
                         <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-person-lines-fill" viewBox="0 0 16 16">
                           <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
                         </svg>&nbsp;&nbsp;
-                        <span data-feather="file" className="align-text-bottom" />  
+                        <span data-feather="file" className="align-text-bottom" 
+                        />  
                         Panels
                       </Link> 
                     </li>
                     <li className="nav-item">
-                      <Link to="/Getallslots" className="nav-link">
+                      <Link to="/Getallslots" className="nav-link" onClick={isadmin}>
                       <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-card-list" viewBox="0 0 16 16">
                           <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
                           <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
@@ -45,14 +47,14 @@ const Sidebar=()=>
                       </Link> 
                     </li>
                     <li className="nav-item">
-                      <Link to="/Profile"className="nav-link" >  
+                    <Link to="/Profile" className="nav-link">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                       </svg>&nbsp;&nbsp;
                         <span data-feather="users" className="align-text-bottom" />
 
                         Profile
-                      </Link> 
+                      </Link>
                     </li>
                     <li className="nav-item">
                       <Link to="/Calendar" className="nav-link">
@@ -77,7 +79,7 @@ const Sidebar=()=>
                           <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1ZM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V8Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"/>
                         </svg>&nbsp;&nbsp;
                           <span data-feather="file-text" className="align-text-bottom" />
-                          Slot by skills
+                          Users
                         </Link> 
                       </li>
                       <li className="nav-item">
@@ -108,5 +110,5 @@ const Sidebar=()=>
     );
     
   }
-}
+
 export default Sidebar;

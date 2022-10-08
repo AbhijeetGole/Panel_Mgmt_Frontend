@@ -1,7 +1,7 @@
 import React from "react";
 import "./Assets/createslot.module.css";
 import "./Assets/bootstrap.min.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Authservice from "../services/auth-service.js";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 //class Createslot extends React.Component
 const Createslot = () => {
   const navigate = useNavigate();
-
+  const [options1, setoptions1] = useState([]);
   const [slotId, setSlotId] = useState("");
   const [panelName, setPanelName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -22,6 +22,17 @@ const Createslot = () => {
 
   // const [home, setHome] = useState('');
   // const [Navigate, setNavigateto] = useState(false);
+  useEffect(() => {
+    async function fetchMyAPI() {
+      await Authservice.getPanel().then(response => {
+
+        setoptions1([...response]);
+
+      })
+    }
+    fetchMyAPI()
+  }, [])
+
   const handleChange = (event) => {
     if (event.target.checked) {
       slotused = true;
@@ -63,9 +74,10 @@ const Createslot = () => {
             closeOnClick: true,
             pauseOnHover: false,
             draggable: true,
-            progress: undefined,})
-            setTimeout(()=>
-            navigate("/Getallslots"),2000);
+            progress: undefined,
+          })
+          setTimeout(() =>
+            navigate("/Getallslots"), 2000);
         },
         (error) => {
           toast.error('Please Fill All The Fields', {
@@ -76,7 +88,7 @@ const Createslot = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+          });
         }
       );
     } catch (err) {
@@ -88,7 +100,7 @@ const Createslot = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        });
+      });
     }
   };
 
@@ -123,13 +135,15 @@ const Createslot = () => {
                     </div>
                     <div className="form-group mb-3">
                       <label className="form-label"> Panel </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Enter panel name"
-                        value={panelName}
-                        onChange={(e) => setPanelName(e.target.value)}
-                      />
+                      <select style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ced4da' }} value={panelName} onChange={
+                        (e) => setPanelName(e.target.value)} >
+
+                        <option value="">Select your Panel Name</option>
+                        {options1.map((opt, index) => (
+
+                          <option key={opt._id}>{opt.panelName}</option>
+                        ))}
+                      </select>
                     </div>
                     <div className="row">
                       <div className="col-sm-6">

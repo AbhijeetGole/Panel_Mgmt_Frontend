@@ -1,24 +1,30 @@
 import React from 'react';
-import { useState } from "react";
-import "./Assets/updatepanel.module.css";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import "./Assets/createpanel.module.css";
 import Authservice from '../services/auth-service.js'
+import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //class Updatepanel extends React.Component{
 const Update_panel2 = () => {
-    const [panelId, setpanelId] = useState("");
-    const [panelName, setPanelName] = useState("");
-    const [skills, setSkills] = useState("");
-    const [Interviewer, setInterviewer] = useState("");
-    var [active, setActive] = useState(true);
+    // const [panelId, setpanelId] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [panelName, setPanelName] = useState(location.state.panelName);
+    const [skills, setSkills] = useState(location.state.skills);
+    const [Interviewer, setInterviewer] = useState(location.state.Interviewer);
+    var [Active, setActive] = useState(true);
 
-    
-    // const [home, setHome] = useState('');
-    // const [Navigate, setNavigateto] = useState(false);
+
+
+    const [Navigate, setNavigateto] = useState(false);
 
     const handleActive = event => {
         if (event.target.checked) {
-            active = true;
+            Active = true;
         } else {
-            active = false;
+            Active = false;
         }
         setActive(current => !current);
     };
@@ -27,10 +33,19 @@ const Update_panel2 = () => {
         console.log("in submit");
         try {
 
-            await Authservice.updatePanel(panelId,panelName, skills, Interviewer).then(
+            await Authservice.updatepanel(panelName, skills, Interviewer, Active).then(
                 (data) => {
-                    alert("Panel updated successfully")
-                    //navigate("/Home")
+                    toast.success('Panelupdated successfully', {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                    setTimeout(() =>
+                        navigate("/Getallpanels"), 2000);
                 },
                 (error) => {
                     alert("Please Fill All The Fields", error);
@@ -60,11 +75,6 @@ const Update_panel2 = () => {
                                 <div className="card-body">
                                     <h2 className="text-center mb-3">Update Panel</h2>
                                     <form onSubmit={submit}>
-                                    <div className="form-group mb-3">
-                                            <label className="form-label"> Panel </label>
-                                            <input type="text" className="form-control" placeholder="Enter panel id" value={panelId} onChange={
-                                                (e) => setpanelId(e.target.value)} />
-                                        </div>
                                         <div className="form-group mb-3">
                                             <label className="form-label"> Panel </label>
                                             <input type="text" className="form-control" placeholder="Enter panel name" value={panelName} onChange={
@@ -81,7 +91,7 @@ const Update_panel2 = () => {
                                                 (e) => setInterviewer(e.target.value)} />
                                         </div>
                                         <div className="form-check form-switch mb-3">
-                                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked value={active} onChange={handleActive} />
+                                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" defaultChecked value={Active} onChange={handleActive} />
                                             <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Active</label>
                                         </div>
                                         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -95,6 +105,17 @@ const Update_panel2 = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     );
 

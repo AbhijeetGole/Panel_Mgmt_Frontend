@@ -15,11 +15,8 @@ import {
 
 
 
-var data =[
-  
-];
 export default function UnusedSlot() {
-  
+  let[data,setData] = useState([]); 
 
   useEffect(()=>{
     
@@ -42,7 +39,7 @@ export default function UnusedSlot() {
               data.push({name:nm,count:cnt})
               i++;
           }
-          
+          setData(data);
           //navigate("/Home")
         },
         (error) => {

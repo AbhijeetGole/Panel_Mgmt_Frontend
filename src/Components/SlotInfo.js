@@ -32,37 +32,26 @@ const SlotInfo = ({
       },
     });
   };
-  
+
   const deleteslot = async () => {
     console.log("in submit");
     try {
       await Authservice.deleteslot(id).then(
         () => {
-            toast.success('Slot deleted successfully', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,})
-                setTimeout(()=>
-          setFlag(true),2500)
-                 },
+          toast.success('Slot deleted successfully', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+          })
+          setTimeout(() =>
+            setFlag(true), 2500)
+        },
         (error) => {
-            toast.warn('Something went wrong!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-        }
-      );
-    } catch (err) {
-        toast.warn('Something went wrong!', {
+          toast.warn('Something went wrong!', {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: true,
@@ -70,7 +59,19 @@ const SlotInfo = ({
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+          });
+        }
+      );
+    } catch (err) {
+      toast.warn('Something went wrong!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   return (
@@ -96,7 +97,7 @@ const SlotInfo = ({
         )}
 
         <td
-          className="actionicon" style={{cursor: "pointer"}}
+          className="actionicon" style={{ cursor: "pointer" }}
           onClick={() => {
             updateslot();
           }}
@@ -113,7 +114,7 @@ const SlotInfo = ({
           </svg>
         </td>
         <td
-          className="actionicon" style={{cursor: "pointer"}}
+          className="actionicon" style={{ cursor: "pointer" }}
           onClick={() => {
             deleteslot();
           }}
@@ -147,16 +148,16 @@ const SlotInfo = ({
         pauseOnHover={false}
       />
       <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </tbody>
   );
 };

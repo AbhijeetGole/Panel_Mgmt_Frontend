@@ -46,6 +46,7 @@ const Updateslot_2 = () => {
       console.log(startDate, endDate, starttime);
       await Authservice.updateSlot(slotId, panelName, startDate, endDate, starttime, endtime, skills, slotused, active).then(
         (data) => {
+          
           toast.success('Slot updated successfully', {
             position: "top-right",
             autoClose: 1500,

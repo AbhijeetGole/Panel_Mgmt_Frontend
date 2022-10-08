@@ -1,3 +1,125 @@
+// import { React, useState } from 'react';
+// import ReactDOM from 'react-dom';
+// import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+// import "./Assets/userlogin.module.css";
+// import Authservice from '../services/auth-service.js'
+// import Home from './Home';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { useForm } from "react-hook-form";
+// import { Form, Button } from 'semantic-ui-react';
+// // class Userlogin extends React.Component 
+// const Userlogin = ({ setToken, setUserdata }) => {
+
+//   const [username, setUsername] = useState("")
+//   const [password, setPassword] = useState("")
+//   const navigate = useNavigate()
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+//     try {
+//       await Authservice.login(username, password).then(
+//         (data) => {
+//           console.log(data.token);
+
+//           //  setToken(data.token);
+//           // setToken(localStorage.getItem("auth-token"))
+//           if (data.token) {
+//             navigate("/home");
+//           }
+//           else {
+//             alert("Invalid Credentials")
+//           }
+
+//         },
+//         (error) => {
+//           console.log(error)
+//         }
+//       );
+//     } catch (err) {
+
+//       console.log(err);
+
+//     }
+
+//   };
+
+//   return (
+//     <div>
+//       <meta charSet="utf-8" />
+//       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+//       <title />
+//       <meta name="description" content />
+//       <meta name="viewport" content="width=device-width, initial-scale=1" />
+//       <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
+//       <link rel="stylesheet" href="/styles/styles.css" />
+//       <link rel="stylesheet" href="./user-login.css" />
+//       <div className="position-fixed top-0 end-0 start-0 bg-img-start bg-image">
+//         <div className="container">
+//           <div className="row">
+//             <div className="min-vh-100 d-flex align-items-center justify-content-center">
+//               <div className="col-12 col-md-8 col-xl-4 my-5">
+//                 <div className="card">
+//                   <div className="card-body">
+
+//                     <h2 className="text-center mb-3">Sign in</h2>
+//                     <div className="text-center mb-5">
+//                       <small className="text-muted text-center">
+//                         Don't have an account yet?
+//                         <Link to="/Userregister" className="text-decoration-none">
+//                           &nbsp;&nbsp;Sign up
+//                         </Link>
+//                       </small>
+//                     </div>
+//                     <form onSubmit={handleLogin}>
+//                       <div className="form-group mb-3">
+
+//                         <label className="form-label" > User Name </label>
+//                         <input type="text" className="form-control" placeholder="Enter your username" value={username} onChange={
+//                           (e) => setUsername(e.target.value)}
+//                         />
+
+//                       </div>
+
+//                       <div className="form-group mb-3">
+//                         <div className="row">
+//                           <div className="col">
+//                             <label className="form-label"> Password </label>
+//                           </div>
+//                           <div className="col-auto text-muted">
+//                             <a href="password-reset-cover.html" className="small text-decoration-none">
+//                               Forgot password?
+//                             </a>
+//                           </div>
+//                         </div>
+//                         <div className="form-group mb-3">
+
+//                           <input className="form-control" type="password" placeholder="Enter your password"
+//                             value={password} onChange={(e) => setPassword(e.target.value)}
+//                           />
+
+//                         </div>
+//                       </div>
+//                       <button className="btn btn-lg w-100 btn-primary mb-3" onClick={handleLogin} >
+//                         <small>Sign in</small>
+//                       </button>
+//                     </form>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div></div>
+//   );
+
+// }
+
+
+// export default Userlogin;
+
+
+
 import { React, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
@@ -10,14 +132,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'semantic-ui-react';
 // class Userlogin extends React.Component 
-const Userlogin = ({ setToken }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    trigger,
-  } = useForm();
+const Userlogin = ({ setToken, setUserdata }) => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -27,41 +142,30 @@ const Userlogin = ({ setToken }) => {
     try {
       await Authservice.login(username, password).then(
         (data) => {
-          console.log(data.token);
-          
-          // setToken(data.token);
-          if (data.token) {
 
-           
-           
-          console.log('successful')
-           navigate("/Home")
-           
+          //console.log(data.token);
+          //setToken(data.token);
+          const tokendata=JSON.parse(localStorage.getItem("user"))
+          console.log(tokendata,"token user");
+           setToken(tokendata.token)
+          //console.log("in lgoin", data.user)
+           setUserdata(tokendata.user);
+          //setUserdata(data.user)
+          if(setToken){
+            navigate("/home");
+          }else{
+            alert("Invalid Credentials")
           }
-          //navigate("/Home")
-          //toast.success('Wow, Registration Successfull !')
-         
+          
+
         },
         (error) => {
-          console.log('unsuccessful')
-          //alert("Wrong Username or Password");
-          //toast.error('wrong credentials')
-          /*toast.error('wrong credentials', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });*/
-
+          console.log(error)
         }
       );
     } catch (err) {
-      //alert("Wrong Username or Password");
-      //toast.error('wrong credentials')
-      console.log('unsuccessful')
+
+      console.log(err);
 
     }
 
@@ -74,6 +178,7 @@ const Userlogin = ({ setToken }) => {
       <title />
       <meta name="description" content />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" href="/styles/styles.css" />
       <link rel="stylesheet" href="./user-login.css" />
       <div className="position-fixed top-0 end-0 start-0 bg-img-start bg-image">
@@ -89,7 +194,7 @@ const Userlogin = ({ setToken }) => {
                       <small className="text-muted text-center">
                         Don't have an account yet?
                         <Link to="/Userregister" className="text-decoration-none">
-                          Sign up
+                          &nbsp;&nbsp;Sign up
                         </Link>
                       </small>
                     </div>
@@ -97,26 +202,10 @@ const Userlogin = ({ setToken }) => {
                       <div className="form-group mb-3">
 
                         <label className="form-label" > User Name </label>
-                        <input type="text" className="form-control" placeholder="Enter your username" value={username}   {...register("username", {
-                          required: "userName is Required",
-                          minLength: {
-                            value: 5,
-                            message: "Enter a minimum of 5 characters",
-                          },
-                          maxLength: {
-                            value: 10,
-                            message: "Max 10 chars are allowed",
-                          }
-                        })}
-                          onKeyUp={() => {
-                            trigger("username");
-                          }} onChange={
-                            (e) => setUsername(e.target.value)}
+                        <input type="text" className="form-control" placeholder="Enter your username" value={username} onChange={
+                          (e) => setUsername(e.target.value)}
                         />
 
-                        {errors.username && (
-                          <small className="text-danger">{errors.username.message}</small>
-                        )}
                       </div>
 
                       <div className="form-group mb-3">
@@ -133,20 +222,9 @@ const Userlogin = ({ setToken }) => {
                         <div className="form-group mb-3">
 
                           <input className="form-control" type="password" placeholder="Enter your password"
-                            value={password} {...register("password", {
-                              required: "Password is Required", pattern:
-                              {
-                                value: /^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-                                message: " Must use a capital and special character ",
-                              }
-                            })}
-                            onKeyUp={() => {
-                              trigger("password");
-                            }} onChange={(e) => setPassword(e.target.value)}
+                            value={password} onChange={(e) => setPassword(e.target.value)}
                           />
-                          {errors.password && (
-                            <small className="text-danger">{errors.password.message}</small>
-                          )}
+
                         </div>
                       </div>
                       <button className="btn btn-lg w-100 btn-primary mb-3" onClick={handleLogin} >
@@ -166,5 +244,6 @@ const Userlogin = ({ setToken }) => {
 
 
 export default Userlogin;
+
 
 

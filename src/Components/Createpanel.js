@@ -12,23 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //class Createpanel extends React.Component s
 const Createpanel = ({ token }) => {
-  const diffToast = () => {
-
-    {
-
-      toast.success('Panel created successfully', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-
-  }
-
+  
   const [options1, setoptions1] = useState([]);
   const [options2, setoptions2] = useState([]);
   const [arr, setArr] = useState([])
@@ -41,7 +25,7 @@ const Createpanel = ({ token }) => {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      await Authservice.getUserinfo().then(response => {
+      await Authservice.getPanel().then(response => {
 
         setoptions1([...response]);
 
@@ -74,20 +58,41 @@ const Createpanel = ({ token }) => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      await Authservice.createPanel(panelId, panelName, skills, Interviewer, active).then(
+      await Authservice.createPanel(panelName, skills, Interviewer, active).then(
         (data) => {
-          console.log(data.token);
-          // navigate("/Panelop")
-          console.log("created")
-          //navigate("/Home")
-          //toast.success('success')
+          toast.success('Slot created successfully', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,})
+            setTimeout(()=>
+            navigate("/Getallpanels"),2000);
         },
         (error) => {
-          console.log(error)
+          toast.error('Please Fill All The Fields', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         }
       );
     } catch (err) {
-      console.log(err)
+      toast.error('Please Fill All The Fields', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
     }
   };
 
@@ -133,7 +138,8 @@ const Createpanel = ({ token }) => {
                       {/* <input type="text" className="form-control" placeholder="Enter interviewer names" value={Interviewer} onChange={
                         (e) => setInterviewer(e.target.value)} /> */}
                       <div className="Apps">
-                        <select style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ced4da' }}>
+                        <select style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ced4da' }} value={Interviewer} onChange={
+                          (e) => setInterviewer(e.target.value)}>
                           <option value="">Select your Interviewer Name</option>
 
                           {options2.map((opt, index) => (
@@ -157,7 +163,7 @@ const Createpanel = ({ token }) => {
 
                     <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                       <button className="btn btn-warn me-md-2" type="button">Cancel</button>
-                      <button className="btn btn-primary" onClick={diffToast} type="submit"  >Submit</button>
+                      <button className="btn btn-primary"  type="submit"  >Submit</button>
                     </div>
                   </form>
                 </div>
