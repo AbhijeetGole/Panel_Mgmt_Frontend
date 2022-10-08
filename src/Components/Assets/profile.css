@@ -1,9 +1,14 @@
-body {
-    background-color: #f9f9fa
+.bg-image {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image:url('./images/ps-bg.jpg');
 }
 
+
 .padding {
-    padding: 3rem !important
+    padding: 7.5rem !important
 }
 
 .user-card-full {
