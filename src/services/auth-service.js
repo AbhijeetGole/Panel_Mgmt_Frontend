@@ -2,22 +2,17 @@ import axios from "axios";
 const API_URL = "http://localhost:8080";
 const API_URL1 = "http://localhost:4000/panel";
 const login = async (username, password) => {
-  // return axios
-  //   .post(API_URL + "/login", {
-  //     username,
-  //     password
-  //   })
-  //   .then(response => {
-  //     if (response.data.accessToken) {
-  //       localStorage.setItem("user", JSON.stringify(response.data));
-  //     }
-  //     console.log(response.data)
+
   const user = {
     username,
     password,
   };
   const response = await axios.post(API_URL + "/user/login", user);
-  return response.data;
+  const data = response.data;
+  console.log(data)
+  localStorage.setItem("user", JSON.stringify(response.data));
+  console.log("user",localStorage.getItem("user"))
+  return data;
 };
 
 const register = async (
@@ -26,7 +21,7 @@ const register = async (
   username,
   password,
   email,
-  phone
+  phone, skills
 ) => {
   // return axios
   //   .post(API_URL + "/login", {
@@ -45,6 +40,8 @@ const register = async (
     password,
     email,
     phone,
+    skills,
+    active: true
   };
   const response = await axios.post(API_URL + "/user/register", user);
   return response.data;
@@ -82,11 +79,15 @@ const deleteslot = async (id) => {
   const response = await axios.delete(API_URL + "/slot/" + id);
   return response.data;
 };
+const deletePanel = async (panelName) => {
+  console.log("In delete panel pi");
+  const response = await axios.delete(API_URL1 + "/" + panelName);
+  return response.data;
+};
 
-const createPanel = async (panelId, panelName, skills, Interviewer) => {
+const createPanel = async (panelName, skills, Interviewer) => {
   const Active = true;
   const panel = {
-    panelId,
     panelName,
     skills,
     Interviewer,
@@ -96,6 +97,7 @@ const createPanel = async (panelId, panelName, skills, Interviewer) => {
   const response1 = await axios.post(API_URL1 + "/createPanel", panel);
   return response1.data;
 };
+
 const updateSlot = async (
   slotId,
   panelName,
@@ -121,6 +123,27 @@ const updateSlot = async (
   console.log("in update slot api");
   const response1 = await axios.put(API_URL + "/slot/" + slotId, slot);
   console.log("api sent", response1.data)
+
+  return response1.data;
+};
+
+const updatepanel = async (
+  panelName,
+  skills,
+  Interviewer,
+  Active
+
+) => {
+  const panel = {
+    panelName,
+    skills,
+    Interviewer,
+    Active
+
+  };
+  console.log("in update panel api");
+  const response1 = await axios.put(API_URL1 + "/" + panelName, panel);
+  console.log("api sent", response1.data)
   return response1.data;
 };
 const getSlot = async () => {
@@ -130,13 +153,39 @@ const getSlot = async () => {
   return response1.data.getSlot;
 };
 const getPanel = async () => {
-    const response1 = await axios.get(API_URL1 + '/getPanel');
-    return response1.data;
+  const response1 = await axios.get(API_URL1 + '/getPanel');
+  return response1.data;
 }
 
 const getUserinfo = async () => {
-    const response1 = await axios.get(API_URL + '/user/userinfo');
-    return response1.data;
+  const response1 = await axios.get(API_URL + '/user/userinfo');
+  return response1.data;
+}
+
+const highestSlot = async () => {
+
+
+
+  const response = await axios.get(API_URL + '/slot/highestslot')
+
+  return response.data;
+
+}
+
+
+
+const unusedSlot = async () => {
+
+  const response = await axios.get(API_URL + '/slot/unusedslots')
+  return response.data;
+
+}
+const logout =async()=>{
+  const response = await axios.delete(API_URL + '/user/logout')
+  localStorage.clear("user")
+  return response.data;
+
+
 }
 const Authservice = {
   login,
@@ -144,9 +193,13 @@ const Authservice = {
   createSlot,
   createPanel,
   deleteslot,
+  deletePanel,
   updateSlot,
+  updatepanel,
   getSlot,
   getPanel,
-getUserinfo
+  getUserinfo,
+  highestSlot,
+  unusedSlot,logout
 };
 export default Authservice;
