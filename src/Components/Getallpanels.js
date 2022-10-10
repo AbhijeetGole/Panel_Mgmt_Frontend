@@ -1,4 +1,3 @@
-
 import { React, useState, useEffect } from "react";
 import "./Assets/getallslots.module.css";
 import Authservice from "../services/auth-service.js";
@@ -8,13 +7,13 @@ import { useNavigate } from "react-router";
 
 //class Getallslots extends React.Component{
 const Getallpanels = () => {
-  
+
   const [panel, setpanel] = useState([]);
   const [flag, setFlag] = useState();
   useEffect(() => {
     try {
       Authservice.getPanel().then((paneldata) => {
-       // console.log("getallslot auth called");
+        // console.log("getallslot auth called");
         console.log(paneldata);
         setpanel(paneldata);
       });
@@ -33,11 +32,7 @@ const Getallpanels = () => {
       <title />
       <meta name="description" content />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link
-        href="//db.onlinewebfonts.com/c/bb018e64d01355748d8ddc53553850b9?family=Cerebri+Sans"
-        rel="stylesheet"
-        type="text/css"
-      />
+
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css"
@@ -61,7 +56,7 @@ const Getallpanels = () => {
                   <form>
                     <div className="input-group input-group-flush input-group-merge input-group-reverse" style={{ "justify-content": "flex-end" }}>
                       {/*<input className="form-control list-search" type="search" placeholder="Search" />*/}
-                      <span className="input-group-text" style={{ "font-weight": "bold", border: "none", "background-color": "white", cursor: "pointer"}} onClick={createPanel}>
+                      <span className="input-group-text" style={{ "font-weight": "bold", border: "none", "background-color": "white", cursor: "pointer" }} onClick={createPanel}>
                         {/* <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
       </svg>*/}{" "}
@@ -93,8 +88,6 @@ const Getallpanels = () => {
                         <th> Edit </th>
                         <th> Delete </th>
                         <th>  </th>
-
-
 
                       </tr>
                     </thead>

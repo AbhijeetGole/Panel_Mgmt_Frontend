@@ -130,9 +130,9 @@ export const Userregister = () => {
                     console.log(data.token);
                     // setToken(data.token);
                     if (data.token) {
-                        alert('Wow, Registration Successfull !')
+                       // alert('Wow, Registration Successfull !')
                         console.log('success')
-                        navigate("/Home")
+                        navigate("/")
                     }
                 }
 

@@ -21,7 +21,9 @@ const UserInfo = ({
                 <td>{username}</td>
                 <td>{firstname}</td>
                 <td>{lastname}</td>
-                <td>{email}</td>
+                <td>
+                <a class="text-muted f-w-400" href="mailto:{Usr.uemail}?subject=Feedback&body=">{email}</a>
+                </td>
                 <td>{phone}</td>
                 <td>{skills}</td>
                 {active ? (

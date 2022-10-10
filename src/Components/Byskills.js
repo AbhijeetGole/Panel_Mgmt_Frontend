@@ -38,14 +38,14 @@ const Byskills = () => {
                 <div className="card-header">
                   {/* Search */}
                   <form>
-                    <div className="input-group input-group-flush input-group-merge input-group-reverse">
+                    {/* <div className="input-group input-group-flush input-group-merge input-group-reverse">
                       <input className="form-control list-search" type="search" placeholder="Search" />
                       <span className="input-group-text">
                         <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                         </svg>
                       </span>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
                 <div className="table-responsive">
@@ -54,8 +54,8 @@ const Byskills = () => {
                       <tr>
                         <th>
                           <div className="form-check mb-n2">
-                            <input className="form-check-input list-checkbox-all" name="ordersSelect" id="ordersSelectAll" type="checkbox" />
-                            <label className="form-check-label" htmlFor="ordersSelectAll">&nbsp;</label>
+                            {/* <input className="form-check-input list-checkbox-all" name="ordersSelect" id="ordersSelectAll" type="checkbox" />
+                            <label className="form-check-label" htmlFor="ordersSelectAll">&nbsp;</label> */}
                           </div>
                         </th>
                         <th>

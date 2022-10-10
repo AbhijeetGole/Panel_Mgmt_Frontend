@@ -11,7 +11,7 @@ class Calend extends React.Component
     }]
   };
   private remoteData = new DataManager({
-    url: 'https://js.syncfusion.com/demos/ejservices/api/Schedule/LoadData', 
+    url: '', 
     adaptor: new WebApiAdaptor(), 
     crossDomain: true 
   });
@@ -22,7 +22,7 @@ class Calend extends React.Component
     return (
     <div style= {{'marginLeft':'16.7%'}} >  
       <ScheduleComponent currentView='Month'
-      eventSettings={{ dataSource: this.remoteData }} selectedDate={new Date(2017, 5, 5)} > 
+      eventSettings={{ dataSource: this.remoteData }} selectedDate={new Date(2022, 10, 10)} > 
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent> 
     </div>   

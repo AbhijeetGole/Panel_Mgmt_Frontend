@@ -1,7 +1,7 @@
 import React from "react";
 import "./Assets/createslot.module.css";
 import "./Assets/bootstrap.min.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Authservice from "../services/auth-service.js";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,12 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 const Createslot = () => {
   const navigate = useNavigate();
   const [options1, setoptions1] = useState([]);
+  const [options2, setoptions2] = useState([]);
   const [slotId, setSlotId] = useState("");
   const [panelName, setPanelName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [Interviewer, setInterviewer] = useState("")
   const [skills, setSkills] = useState("");
   var [slotused, setUsed] = useState(true);
   var [active, setActive] = useState(true);
@@ -33,6 +35,16 @@ const Createslot = () => {
     fetchMyAPI()
   }, [])
 
+  useEffect(() => {
+    async function fetchMyAPI() {
+      await Authservice.getUserinfo().then(response => {
+
+        setoptions2([...response]);
+
+      })
+    }
+    fetchMyAPI()
+  }, [])
   const handleChange = (event) => {
     if (event.target.checked) {
       slotused = true;
@@ -62,6 +74,7 @@ const Createslot = () => {
         endDate,
         startTime,
         endTime,
+        Interviewer,
         skills,
         slotused,
         active
@@ -195,6 +208,21 @@ const Createslot = () => {
                             onChange={(e) => setEndTime(e.target.value)}
                           />
                         </div>
+                      </div>
+                    </div>
+                    <div className="form-group mb-3">
+                      <label className="form-label">Select Interviewer </label>
+                      {/* <input type="text" className="form-control" placeholder="Enter interviewer names" value={Interviewer} onChange={
+                        (e) => setInterviewer(e.target.value)} /> */}
+                      <div className="Apps">
+                        <select style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ced4da' }} value={Interviewer} onChange={
+                          (e) => setInterviewer(e.target.value)}>
+                          <option value="">Select your Interviewer Name</option>
+
+                          {options2.map((opt, index) => (
+                            <option key={opt._id}>{opt.firstname}</option>
+                          ))}
+                        </select>
                       </div>
                     </div>
                     <div className="form-group mb-3">

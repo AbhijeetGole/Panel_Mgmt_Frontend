@@ -50,10 +50,10 @@ export default function UnusedSlot() {
 console.log(data)
 
 return (
-    <div style={{width: '80%', marginLeft: '35%', marginTop: '5%'}} >
+    <div style={{width: '100%', marginLeft: '30%', marginTop: '5%'}} >
     <BarChart 
-      width={600}
-      height={400}
+      width={750}
+      height={450}
       data={data}
       margin={{
         top: 5,

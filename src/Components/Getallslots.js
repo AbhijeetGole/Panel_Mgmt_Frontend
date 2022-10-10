@@ -85,12 +85,14 @@ const Getallslots = () => {
                         <th> End Date </th>
                         <th> Start Time </th>
                         <th> End Time </th>
+                        <th>Interviewer</th>
                         <th>Skills</th>
                         <th> Status </th>
                         <th> Used </th>
                         <th></th>
                         <th></th>
                         <th></th>
+                      
                       </tr>
                     </thead>
                     {slots.map((slot) => {
@@ -102,6 +104,7 @@ const Getallslots = () => {
                           enddate={slot.endDate}
                           starttime={slot.starttime}
                           endtime={slot.endtime}
+                          Interviewer = {slot.Interviewer}
                           skills={slot.skills}
                           active={slot.active}
                           usage={slot.slotused}

@@ -18,9 +18,10 @@ const Updateslot_2 = () => {
   const [endDate, setEndDate] = useState(location.state.enddate);
   const [starttime, setStartTime] = useState(location.state.starttime);
   const [endtime, setEndTime] = useState(location.state.endtime);
+  const [Interviewer, setInterviewer] = useState(location.state.Interviewer);
   const [skills, setSkills] = useState(location.state.skills);
-  var [slotused, setUsed] = useState(location.state.active);
-  var [active, setActive] = useState(location.state.usage);
+  var [slotused, setUsed] = useState(location.state.usage);
+  var [active, setActive] = useState(location.state.active);
   
   const handleChange = event => {
     if (event.target.checked) {
@@ -44,7 +45,7 @@ const Updateslot_2 = () => {
     console.log("in submit");
     try {
       console.log(startDate, endDate, starttime);
-      await Authservice.updateSlot(slotId, panelName, startDate, endDate, starttime, endtime, skills, slotused, active).then(
+      await Authservice.updateSlot(slotId, panelName, startDate, endDate, starttime, endtime,Interviewer, skills, slotused, active).then(
         (data) => {
           
           toast.success('Slot updated successfully', {
@@ -136,6 +137,12 @@ const Updateslot_2 = () => {
                           />
                         </div>
                       </div>
+                    </div>
+                    <div className="form-group mb-3">
+                      <label className="form-label"> Interviewer </label>
+                      <input type="text" className="form-control" placeholder="Java, React etc."
+                        value={Interviewer} onChange={(e) => setInterviewer(e.target.value)}
+                      />
                     </div>
                     <div className="form-group mb-3">
                       <label className="form-label"> Skills </label>
