@@ -1,6 +1,6 @@
 import axios from "axios";
-const API_URL = "http://localhost:8080";
-const API_URL1 = "http://localhost:4000/panel";
+const API_URL = "http://localhost:7000";
+const API_URL1 = "http://localhost:7001/panel";
 const login = async (username, password) => {
 
   const user = {
@@ -54,6 +54,7 @@ const createSlot = async (
   endDate,
   starttime,
   endtime,
+  Interviewer,
   skills,
   slotused,
   active
@@ -65,6 +66,7 @@ const createSlot = async (
     endDate,
     starttime,
     endtime,
+    Interviewer,
     skills,
     slotused,
     active,
@@ -85,8 +87,8 @@ const deletePanel = async (panelName) => {
   return response.data;
 };
 
-const createPanel = async (panelName, skills, Interviewer) => {
-  const Active = true;
+const createPanel = async (panelName, skills, Interviewer,Active) => {
+
   const panel = {
     panelName,
     skills,
@@ -105,6 +107,7 @@ const updateSlot = async (
   endDate,
   starttime,
   endtime,
+  Interviewer,
   skills,
   slotused,
   active
@@ -116,12 +119,14 @@ const updateSlot = async (
     endDate,
     starttime,
     endtime,
+    Interviewer,
     skills,
     slotused,
     active,
   };
   console.log("in update slot api");
   const response1 = await axios.put(API_URL + "/slot/" + slotId, slot);
+
   console.log("api sent", response1.data)
 
   return response1.data;
@@ -187,6 +192,40 @@ const logout =async()=>{
 
 
 }
+const getUsername = async(username)=>
+
+{
+
+  // const user={
+
+  //   username
+
+  // }
+
+  const response = await axios.get(API_URL + "/user/" + username);
+
+
+
+  return response.data;
+
+}
+
+
+
+const SlotByUserName = async(username)=>
+
+{
+
+  const response =  await axios.get(API_URL + "/slot/getYourSlot/"+username);
+
+  console.log("In auth service");
+
+  console.log(response.data.result);
+
+  return response.data.result;
+
+}
+
 const Authservice = {
   login,
   register,
@@ -200,6 +239,8 @@ const Authservice = {
   getPanel,
   getUserinfo,
   highestSlot,
-  unusedSlot,logout
+  unusedSlot,logout,
+  SlotByUserName,
+  getUsername
 };
 export default Authservice;
